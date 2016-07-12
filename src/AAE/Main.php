@@ -24,14 +24,14 @@ class Main extends PluginBase implements Listener{
 
 	public function onEnable(){
 		$this->getServer()->getPluginManager()->registerEvents($this,$this);
-		$this->getLogger()->info("Enabled!");
+		$this->getLogger()->info(TF::GREEN."Enabled!");
 		if($this->getMax() === 5){
-			$this->getLogger()->info("The enchantment max level is changeable in the config.yml!(/root/plugins/AntiAbusiveEnchants/config.yml)")
+			$this->getLogger()->info(TF::GOLD."The enchantment max level is changeable in the config.yml!(/root/plugins/AntiAbusiveEnchants/config.yml)");
 		}
 	}
 
 	public function onDisable(){
-		$this->getLogger()->info("Disabled!");
+		$this->getLogger()->info(TF::RED."Disabled!");
 	}
 
 	public function getMax(){
@@ -49,7 +49,7 @@ class Main extends PluginBase implements Listener{
 						if($e->getLevel() > $max){
 							$p->getInventory()->removeItem($i);
 							$this->getLogger()->info("Item ".$i->getName()." has been removed from ".$p->getName()."'s inv for a enchantment level over 5!");
-							$p->sendMessage(TF::GREEN."[AntiAbusiveEnchants]".$i->getName()." has been removed from your inv for being above or eqaul to the max enchantment level!");
+							$p->sendMessage(TF::GREEN."[AntiAbusiveEnchants]".TF::BLUE.$i->getName()." has been removed from your inv for being above or eqaul to the max enchantment level!");
 						}
 					}
 				}
