@@ -12,27 +12,44 @@ use pocketmine\plugin\PluginBase;
 
 use pocketmine\event\inventory\InventoryOpenEvent;
 
+use pocketmine\utils\TextFormat as TF;
+use pocketmine\utils\Config;
+
 class Main extends PluginBase implements Listener{
+
+	public function onLoad(){
+		@mkdir($this->getDataFolder());
+        $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML,array("max-level" => 5));
+	}
 
 	public function onEnable(){
 		$this->getServer()->getPluginManager()->registerEvents($this,$this);
 		$this->getLogger()->info("Enabled!");
+		if($this->getMax() === 5){
+			$this->getLogger()->info("The enchantment max level is changeable in the config.yml!(/root/plugins/AntiAbusiveEnchants/config.yml)")
+		}
 	}
 
 	public function onDisable(){
+		$this->getLogger()->info("Disabled!");
+	}
 
+	public function getMax(){
+		return $this->config->get("max-level");
 	}
 
 	public function onInvOpen(InventoryOpenEvent $ev){
 		$p = $ev->getPlayer();
+		$max = $this->getMax();
 		$contents = $p->getInventory()->getContents();
 		foreach($contents as $i){
 			if($i instanceof Item){
 				if($i->hasEnchantments()){
 					foreach($i->getEnchantments() as $e){
-						if($e->getLevel() > 5){
+						if($e->getLevel() > $max){
 							$p->getInventory()->removeItem($i);
 							$this->getLogger()->info("Item ".$i->getName()." has been removed from ".$p->getName()."'s inv for a enchantment level over 5!");
+							$p->sendMessage(TF::GREEN."[AntiAbusiveEnchants]".$i->getName()." has been removed from your inv for being above or eqaul to the max enchantment level!");
 						}
 					}
 				}
