@@ -38,7 +38,7 @@ class Main extends PluginBase implements Listener{
 		return $this->config->get("max-level");
 	}
 
-	public function onInvOpen(PlayerItemHeldEvent $ev){
+	public function onItemHeld(PlayerItemHeldEvent $ev){
 		$p = $ev->getPlayer();
 		$max = $this->getMax();
 		$contents = $p->getInventory()->getContents();
