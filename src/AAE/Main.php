@@ -10,7 +10,7 @@ use pocketmine\event\Listener;
 
 use pocketmine\plugin\PluginBase;
 
-use pocketmine\event\inventory\InventoryOpenEvent;
+use pocketmine\event\player\PlayerItemHeldEvent;
 
 use pocketmine\utils\TextFormat as TF;
 use pocketmine\utils\Config;
@@ -38,11 +38,11 @@ class Main extends PluginBase implements Listener{
 		return $this->config->get("max-level");
 	}
 
-	public function onInvOpen(InventoryOpenEvent $ev){
+	public function onInvOpen(PlayerItemHeldEvent $ev){
 		$p = $ev->getPlayer();
 		$max = $this->getMax();
 		$contents = $p->getInventory()->getContents();
-		foreach($contents as $i){
+		$i = $p->getInventory()->getItemInHand();
 			if($i instanceof Item){
 				if($i->hasEnchantments()){
 					foreach($i->getEnchantments() as $e){
@@ -55,5 +55,4 @@ class Main extends PluginBase implements Listener{
 				}
 			}
 		}
-	}
 }
