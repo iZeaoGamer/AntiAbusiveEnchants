@@ -19,13 +19,13 @@ class Main extends PluginBase implements Listener{
 
 	public function onLoad(){
 		@mkdir($this->getDataFolder());
-        $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML,array("max-level" => 8));
+        $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML,array("max-level" => 9));
 	}
 
 	public function onEnable(){
 		$this->getServer()->getPluginManager()->registerEvents($this,$this);
 		$this->getLogger()->info(TF::GREEN."Enabled!");
-		if($this->getMax() === 8){
+		if($this->getMax() === 9){
 			$this->getLogger()->info(TF::GOLD."The enchantment max level is changeable in the config.yml!(/root/plugins/AntiAbusiveEnchants/config.yml)");
 		}
 	}
