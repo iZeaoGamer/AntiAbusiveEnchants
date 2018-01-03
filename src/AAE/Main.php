@@ -48,7 +48,7 @@ class Main extends PluginBase implements Listener{
 					foreach($i->getEnchantments() as $e){
 						if($e->getLevel() >= $max){
 							$p->getInventory()->removeItem($i);
-							$this->getServer()->getLogger()->info(TF::GREEN."[AntiAbusiveEnchants]".TF::BLUE."§cHey! You have the item ".$i->getName()."! §dIt is a bannable enchant, which is removed has been removed from §c".$p->getName()."'s §ainventory for a enchantment level over ".$this->getMax()."!");
+							$this->getServer()->getLogger()->info(TF::GREEN."[AntiAbusiveEnchants]".TF::BLUE."§cHey! You have the item ".$i->getName()."! §dIt is a bannable enchant, which has been removed from §c".$p->getName()."'s §ainventory for a enchantment level over ".$this->getMax()."!");
 							$p->sendMessage(TF::GREEN."[AntiAbusiveEnchants]".TF::BLUE.$i->getName()." §cHEY! You have bannable enchants! It has been removed from your inventory for being above or equal to the max enchantment level!");
 						}
 					}
