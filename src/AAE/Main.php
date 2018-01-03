@@ -3,15 +3,10 @@
 namespace AAE;
 
 use pocketmine\item\Item;
-
 use pocketmine\Server;
-
 use pocketmine\event\Listener;
-
 use pocketmine\plugin\PluginBase;
-
 use pocketmine\event\player\PlayerItemHeldEvent;
-
 use pocketmine\utils\TextFormat as TF;
 use pocketmine\utils\Config;
 
